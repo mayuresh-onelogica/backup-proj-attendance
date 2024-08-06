@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "ISAM_final_pipeline_OLD"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "77531c2b-0910-4a6e-9bab-e3135c2e7dba"
+  }
+}

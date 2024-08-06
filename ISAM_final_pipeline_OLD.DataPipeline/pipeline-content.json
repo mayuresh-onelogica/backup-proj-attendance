@@ -1,0 +1,2364 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@pipeline().parameters.cw_items_oy4",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "AzurePostgreSqlSource",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "AzurePostgreSqlTable",
+                    "typeProperties": {
+                      "table": "hrms_app_attendance",
+                      "schema": "public"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d858d2e7-b709-43fb-b859-b14e391b0629"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "OverwriteSchema",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "table": "Employee_Attendance"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "feb6c1ba-1d8d-4c7a-87f0-9f289d2b2c08",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      },
+                      "name": "HRMS_DATA_ATTNDANCE"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "mappings": [
+                    {
+                      "source": {
+                        "name": "id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "checkin_time",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "checkin_time",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "checkout_time",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "checkout_time",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "date",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "date",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "status",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "status",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "employee_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "employee_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "latitude",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "latitude",
+                        "physicalType": "decimal",
+                        "scale": 18,
+                        "precision": 38
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "longitude",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "longitude",
+                        "physicalType": "decimal",
+                        "scale": 18,
+                        "precision": 38
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "address",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "address",
+                        "physicalType": "string"
+                      }
+                    }
+                  ],
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data1",
+              "dependsOn": []
+            },
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "AzurePostgreSqlSource",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "AzurePostgreSqlTable",
+                    "typeProperties": {
+                      "table": "hrms_app_dailyworkinghours",
+                      "schema": "public"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "8191ce32-55ce-4eca-b7de-70319c320598"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "OverwriteSchema",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "table": "Employee_dailyworking"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "feb6c1ba-1d8d-4c7a-87f0-9f289d2b2c08",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      },
+                      "name": "HRMS_DATA_ATTNDANCE"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "mappings": [
+                    {
+                      "source": {
+                        "name": "id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "date",
+                        "type": "DateTime",
+                        "physicalType": "date"
+                      },
+                      "sink": {
+                        "name": "date",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "total_working_hours",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "total_working_hours",
+                        "physicalType": "decimal"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "hours_worked",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "hours_worked",
+                        "physicalType": "decimal"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "overtime_hours",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "overtime_hours",
+                        "physicalType": "decimal"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "created_date",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "created_date",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "employee_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "employee_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "remaining_hours",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "remaining_hours",
+                        "physicalType": "decimal"
+                      }
+                    }
+                  ],
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data2",
+              "dependsOn": []
+            },
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "AzurePostgreSqlSource",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "AzurePostgreSqlTable",
+                    "typeProperties": {
+                      "table": "hrms_app_employee",
+                      "schema": "public"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "8191ce32-55ce-4eca-b7de-70319c320598"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "OverwriteSchema",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "table": "Employee_details"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "feb6c1ba-1d8d-4c7a-87f0-9f289d2b2c08",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      },
+                      "name": "HRMS_DATA_ATTNDANCE"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data3",
+              "dependsOn": []
+            },
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "AzurePostgreSqlSource",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "AzurePostgreSqlTable",
+                    "typeProperties": {
+                      "table": "hrms_app_project",
+                      "schema": "public"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "8191ce32-55ce-4eca-b7de-70319c320598"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "OverwriteSchema",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "table": "Project_details"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "feb6c1ba-1d8d-4c7a-87f0-9f289d2b2c08",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      },
+                      "name": "HRMS_DATA_ATTNDANCE"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "mappings": [
+                    {
+                      "source": {
+                        "name": "id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_name",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "project_name",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "projectID",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "projectID",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_budget",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "project_budget",
+                        "physicalType": "decimal",
+                        "scale": 18,
+                        "precision": 38
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_start_date",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "project_start_date",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_est_end_date",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "project_est_end_date",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_description",
+                        "type": "String",
+                        "physicalType": "text"
+                      },
+                      "sink": {
+                        "name": "project_description",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_plan",
+                        "type": "String",
+                        "physicalType": "text"
+                      },
+                      "sink": {
+                        "name": "project_plan",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_duration",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "project_duration",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_location",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "project_location",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "technology_involved",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "technology_involved",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_status",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "project_status",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "risks_involved",
+                        "type": "String",
+                        "physicalType": "text"
+                      },
+                      "sink": {
+                        "name": "risks_involved",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_deliverables",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "project_deliverables",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "customer_sign_off_status",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "customer_sign_off_status",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "created_date",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "created_date",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "account_owner_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "account_owner_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "company_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "company_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "opportunity_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "opportunity_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_manager_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "project_manager_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_owner_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "project_owner_id",
+                        "physicalType": "long"
+                      }
+                    }
+                  ],
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data5",
+              "dependsOn": []
+            },
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "AzurePostgreSqlSource",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "AzurePostgreSqlTable",
+                    "typeProperties": {
+                      "table": "hrms_app_leave",
+                      "schema": "public"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d858d2e7-b709-43fb-b859-b14e391b0629"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "OverwriteSchema",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "table": "leave_tstt"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "feb6c1ba-1d8d-4c7a-87f0-9f289d2b2c08",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      },
+                      "name": "HRMS_DATA_ATTNDANCE"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "mappings": [
+                    {
+                      "source": {
+                        "name": "id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "start_date",
+                        "type": "DateTime",
+                        "physicalType": "date"
+                      },
+                      "sink": {
+                        "name": "start_date",
+                        "physicalType": "date"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "end_date",
+                        "type": "DateTime",
+                        "physicalType": "date"
+                      },
+                      "sink": {
+                        "name": "end_date",
+                        "physicalType": "date"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "remarks",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "remarks",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "reason",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "reason",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "status",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "status",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "document",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "document",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "created_at",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "created_at",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "updated_at",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "updated_at",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "company_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "company_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "employee_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "employee_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "reply_comment",
+                        "type": "String",
+                        "physicalType": "text"
+                      },
+                      "sink": {
+                        "name": "reply_comment",
+                        "physicalType": "string"
+                      }
+                    }
+                  ],
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": true,
+                "secureOutput": true
+              },
+              "name": "Copy data4",
+              "dependsOn": []
+            },
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "AzurePostgreSqlSource",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "AzurePostgreSqlTable",
+                    "typeProperties": {
+                      "table": "hrms_app_timesheet",
+                      "schema": "public"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d858d2e7-b709-43fb-b859-b14e391b0629"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "Append",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "table": "Employee_timesheet"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "feb6c1ba-1d8d-4c7a-87f0-9f289d2b2c08",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      },
+                      "name": "HRMS_DATA_ATTNDANCE"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "mappings": [
+                    {
+                      "source": {
+                        "name": "id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "date",
+                        "type": "DateTime",
+                        "physicalType": "date"
+                      },
+                      "sink": {
+                        "name": "date",
+                        "physicalType": "date"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "hours",
+                        "type": "Decimal",
+                        "physicalType": "numeric"
+                      },
+                      "sink": {
+                        "name": "hours",
+                        "physicalType": "decimal"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "description",
+                        "type": "String",
+                        "physicalType": "text"
+                      },
+                      "sink": {
+                        "name": "description",
+                        "physicalType": "string"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "created_date",
+                        "type": "DateTime",
+                        "physicalType": "timestamp with time zone"
+                      },
+                      "sink": {
+                        "name": "created_date",
+                        "physicalType": "timestamp"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "employee_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "employee_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "task_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "task_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "project_id",
+                        "type": "Int64",
+                        "physicalType": "bigint"
+                      },
+                      "sink": {
+                        "name": "project_id",
+                        "physicalType": "long"
+                      }
+                    },
+                    {
+                      "source": {
+                        "name": "timesheet_image",
+                        "type": "String",
+                        "physicalType": "character varying"
+                      },
+                      "sink": {
+                        "name": "timesheet_image",
+                        "physicalType": "string"
+                      }
+                    }
+                  ],
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data6",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach_oy4",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "894f02bc-ae73-48ea-91a2-7b0cd1056c06",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Notebook1",
+        "dependsOn": [
+          {
+            "activity": "ForEach_oy4",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "cw_items_oy4": {
+        "type": "Array",
+        "defaultValue": [
+          {
+            "source": {
+              "table": "hrms_app_attendance"
+            },
+            "destination": {
+              "table": "public_hrms_app_attendance"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "checkin_time",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "checkin_time",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "checkout_time",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "checkout_time",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "status",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "status",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "employee_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "employee_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "latitude",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "latitude",
+                      "physicalType": "decimal"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "longitude",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "longitude",
+                      "physicalType": "decimal"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "address",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "address",
+                      "physicalType": "string"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "hrms_app_dailyworkinghours"
+            },
+            "destination": {
+              "table": "public_hrms_app_dailyworkinghours"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "date",
+                      "type": "DateTime",
+                      "physicalType": "date"
+                    },
+                    "sink": {
+                      "name": "date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "total_working_hours",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "total_working_hours",
+                      "physicalType": "decimal"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "hours_worked",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "hours_worked",
+                      "physicalType": "decimal"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "overtime_hours",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "overtime_hours",
+                      "physicalType": "decimal"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "created_date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "created_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "employee_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "employee_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "remaining_hours",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "remaining_hours",
+                      "physicalType": "decimal"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "hrms_app_employee"
+            },
+            "destination": {
+              "table": "public_hrms_app_employee"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "username",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "username",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "first_name",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "first_name",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "last_name",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "last_name",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "linkedin_url",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "linkedin_url",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "skills",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "skills",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "pincode",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "pincode",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "permanent_pincode",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "permanent_pincode",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "state",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "state",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "permanent_state",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "permanent_state",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "district",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "district",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "profile_pic",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "profile_pic",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "address",
+                      "type": "String",
+                      "physicalType": "text"
+                    },
+                    "sink": {
+                      "name": "address",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "permanent_address",
+                      "type": "String",
+                      "physicalType": "text"
+                    },
+                    "sink": {
+                      "name": "permanent_address",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "country",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "country",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "permanent_country",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "permanent_country",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "mobile",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "mobile",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "alternate_mobile",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "alternate_mobile",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "email",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "email",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "hiring_date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "hiring_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "status",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "status",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "employement_types",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "employement_types",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "reason",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "reason",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "remarks",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "remarks",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "status_change_date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "status_change_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "company_name",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "company_name",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "date_of_birth",
+                      "type": "DateTime",
+                      "physicalType": "date"
+                    },
+                    "sink": {
+                      "name": "date_of_birth",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "gender",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "gender",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "martial_status",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "martial_status",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "nationality",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "nationality",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "emergency_name",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "emergency_name",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "emergency_mobile",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "emergency_mobile",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "emergency_email",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "emergency_email",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "emergency_relationship",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "emergency_relationship",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "bank_name",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "bank_name",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "bank_branch",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "bank_branch",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "bank_ifsc",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "bank_ifsc",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "bankaccount_name",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "bankaccount_name",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "bankaccount_number",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "bankaccount_number",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "bankaccount_type",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "bankaccount_type",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "aadhar_number",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "aadhar_number",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "pan_number",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "pan_number",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "passport_number",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "passport_number",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "dl_number",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "dl_number",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "ctc",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "ctc",
+                      "physicalType": "decimal"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "color",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "color",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "created_date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "created_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "is_allocated",
+                      "type": "Boolean",
+                      "physicalType": "boolean"
+                    },
+                    "sink": {
+                      "name": "is_allocated",
+                      "physicalType": "boolean"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "company_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "company_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "department_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "department_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "designation_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "designation_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "mentor_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "mentor_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "reporting_manager_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "reporting_manager_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "user_id",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "user_id",
+                      "physicalType": "integer"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "employee_code",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "employee_code",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "unique_number",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "unique_number",
+                      "physicalType": "integer"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "hrms_app_leave"
+            },
+            "destination": {
+              "table": "public_hrms_app_leave"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "start_date",
+                      "type": "DateTime",
+                      "physicalType": "date"
+                    },
+                    "sink": {
+                      "name": "start_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "end_date",
+                      "type": "DateTime",
+                      "physicalType": "date"
+                    },
+                    "sink": {
+                      "name": "end_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "remarks",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "remarks",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "reason",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "reason",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "status",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "status",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "document",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "document",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "created_at",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "created_at",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "updated_at",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "updated_at",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "company_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "company_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "employee_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "employee_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "reply_comment",
+                      "type": "String",
+                      "physicalType": "text"
+                    },
+                    "sink": {
+                      "name": "reply_comment",
+                      "physicalType": "string"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "hrms_app_project"
+            },
+            "destination": {
+              "table": "public_hrms_app_project"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_name",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "project_name",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "projectID",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "projectID",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_budget",
+                      "type": "Decimal",
+                      "physicalType": "numeric"
+                    },
+                    "sink": {
+                      "name": "project_budget",
+                      "physicalType": "decimal"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_start_date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "project_start_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_est_end_date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "project_est_end_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_description",
+                      "type": "String",
+                      "physicalType": "text"
+                    },
+                    "sink": {
+                      "name": "project_description",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_plan",
+                      "type": "String",
+                      "physicalType": "text"
+                    },
+                    "sink": {
+                      "name": "project_plan",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_duration",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "project_duration",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_location",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "project_location",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "technology_involved",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "technology_involved",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_status",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "project_status",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "risks_involved",
+                      "type": "String",
+                      "physicalType": "text"
+                    },
+                    "sink": {
+                      "name": "risks_involved",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_deliverables",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "project_deliverables",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "customer_sign_off_status",
+                      "type": "String",
+                      "physicalType": "character varying"
+                    },
+                    "sink": {
+                      "name": "customer_sign_off_status",
+                      "physicalType": "string"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "created_date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp with time zone"
+                    },
+                    "sink": {
+                      "name": "created_date",
+                      "physicalType": "timestamp"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "account_owner_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "account_owner_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "company_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "company_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "opportunity_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "opportunity_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_manager_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "project_manager_id",
+                      "physicalType": "long"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "project_owner_id",
+                      "type": "Int64",
+                      "physicalType": "bigint"
+                    },
+                    "sink": {
+                      "name": "project_owner_id",
+                      "physicalType": "long"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

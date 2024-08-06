@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "HRMS_DATA_ATTNDANCE"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "feb6c1ba-1d8d-4c7a-87f0-9f289d2b2c08"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Attendance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d8697767-cc3b-4d57-bc38-50bc69eb4b6b"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Attendance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3c0efe9f-6e1b-40be-8aa4-833da050f9a5"
+  }
+}
